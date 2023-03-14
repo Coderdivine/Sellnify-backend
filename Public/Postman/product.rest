@@ -1,0 +1,16 @@
+GET http://localhost:4001/product
+Authorization: Bearer eTYsv...
+
+###
+GET http://localhost:4001/product/cef67bcfe19066a932b7673e239eb23d
+###
+POST http://localhost:4001/product/update/cef67bcfe19066a932b7673e239eb23d
+Authorization: Bearer abcd....
+Content-Type: application/json
+
+{
+    "product_category_name":"perfumaria",
+    "product_description_lenght":"287"
+}
+###
+DELETE http://localhost:4001/product/dlt/cef67bcfe19066a932b7673e239eb23d

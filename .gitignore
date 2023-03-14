@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+
+# production env files
+.env
+
+# exclude files in uploads
+uploads/*
+!uploads/.gitkeep
+
+# exclude files in docs
+docs/*
+!docs/apidoc
+!docs/.gitkeep

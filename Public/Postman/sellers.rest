@@ -1,0 +1,16 @@
+POST http://localhost:4001/sellers/login
+Authorization: Bearer eTYsv...
+Content-Type: application/json
+
+{
+    "seller_id":"3442f8959a84dea7ee197c632cb2df15",
+    "seller_zip_code_prefix":"13023"
+}
+###
+GET http://localhost:4001/sellers/update-profile
+Authorization: Bearer eTYsv...
+Content-Type: application/json
+
+{
+    "city":"campinas"
+}
