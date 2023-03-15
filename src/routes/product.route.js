@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const ProductCtrl = require("../controllers/product.controller");
+const auth = require("../middlewares/auth.middleware")();
+
 
 /**
  * Get all products...

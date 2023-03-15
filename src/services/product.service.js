@@ -13,8 +13,31 @@ class ProductService{
         return product;
     }
 
-    async getAll() {
-        return await ProductSchema.find({});
+    async getAll(offset, limit) {
+        const data =  await ProductSchema.aggregate([
+            {
+              $sort: { date: 1 },
+            },
+            {
+              $skip: offset,
+            },
+            {
+              $limit: limit,
+            },
+          ])
+          .toArray();
+    
+        const total = await ProductSchema.countDocuments();
+    
+        const response = {
+          data: data,
+          total: total,
+          limit: limit,
+          offset: offset,
+        };
+        //.find({}).toArray();
+        console.log({response})
+        return response;
     }
 
     async dltProduct(product_id){
@@ -33,7 +56,7 @@ class ProductService{
         // product.description = data.description?data.description:product.description;
         // product.price = data.price?data.price:product.price;
         // product.image = data.image?data.image:product.image;
-        const savedChnages = await ProductSchema.updateOne({product_id, $set:data});
+        const savedChnages = await ProductSchema.updateOne({product_id}, {$set:data});
         if(!savedChnages) throw new CustomError("Update failed. Try again. Later");
         return savedChnages;
     }

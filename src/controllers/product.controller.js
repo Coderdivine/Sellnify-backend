@@ -10,7 +10,10 @@ class ProductController{
     }
 
     async allProducts(req,res){
-        const result = await ProductService.getAll();
+        const offset = parseInt(req.query.offset) || 0;
+        const limit = parseInt(req.query.limit) || 20;
+        console.log({offset: offset, limit: limit});
+        const {data:result} = await ProductService.getAll(offset, limit);
         res.status(200).send(response("All product fetched", result));
     }
 

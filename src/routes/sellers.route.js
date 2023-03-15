@@ -1,15 +1,15 @@
-const { role } = require("../config");
+//const { role } = require("../config");
 const router = require("express").Router();
-const auth = require("../middlewares/auth.middleware");
-const upload = require("../middlewares/multer.middleware");
-const ProductCtrl = require("../controllers/product.controller");
+const auth = require("../middlewares/auth.middleware")();
+//const upload = require("../middlewares/multer.middleware");
+//const ProductCtrl = require("../controllers/product.controller");
 const SellerCtrl = require("../controllers/seller.controller");
 
 
-router.get("/login",SellerCtrl.login);
+router.post("/login",auth,SellerCtrl.login);
 
 
-router.post("/update-profile",SellerCtrl.updateUserProfile);
+router.post("/update-profile",auth,SellerCtrl.updateUserProfile);
 
 /**
  * @apiIgnore Not to be used
